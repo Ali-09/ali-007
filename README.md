@@ -1,59 +1,137 @@
-# Ali007
+# Ali-007
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.13.
+A modern Angular application built with standalone components and Tailwind CSS.
 
-## Development server
+## 🚀 Features
 
-To start a local development server, run:
+- **Modern Architecture**: Built with Angular 19 and standalone components
+- **Styling**: Tailwind CSS for modern, responsive design
+- **Authentication**: Complete authentication system with login/logout functionality
+- **Routing**: Protected routes with authentication guards
+- **State Management**: Reactive state management using RxJS
+- **Clean Code**: External templates and minimal HTML comments for better maintainability
+- **Code Quality**: ESLint and Prettier for consistent code style
 
+## 📋 Prerequisites
+
+- Node.js 20.11.1 (LTS)
+- npm (comes with Node.js)
+- nvm (Node Version Manager)
+
+## 🛠️ Installation
+
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd ali-007
+```
+
+2. Install and use the correct Node.js version using nvm:
+```bash
+nvm install
+nvm use
+```
+
+3. Install dependencies:
+```bash
+npm install
+```
+
+4. Run linting and formatting checks:
+```bash
+# Check for linting issues
+npm run lint
+
+# Fix linting issues automatically
+npm run lint:fix
+
+# Check code formatting
+npm run format:check
+
+# Format code automatically
+npm run format
+
+# Or run all validations at once
+npm run validate
+```
+
+5. Start the development server:
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## 🏗️ Project Structure
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```
+src/
+├── app/
+│   ├── core/           # Singleton services, guards, interceptors
+│   ├── shared/         # Shared components, directives, pipes
+│   ├── modules/        # Feature modules
+│   │   ├── auth/       # Authentication module
+│   │   │   └── login/  # Login component with clean HTML structure
+│   │   └── home/       # Home module with external template
+│   └── layouts/        # Layout components
+├── assets/            # Static assets
+└── styles.css         # Global styles
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## 🔐 Authentication
 
-```bash
-ng generate --help
-```
+The application includes a complete authentication system:
 
-## Building
+- Login form with email/password validation
+- Protected routes
+- Persistent authentication state
+- Logout functionality
+- Clean and modern UI with Tailwind CSS
 
-To build the project run:
+## 🎨 Styling
 
-```bash
-ng build
-```
+The project uses Tailwind CSS for styling:
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+- Responsive design
+- Modern UI components
+- Customizable theme
+- Utility-first approach
+- Clean and maintainable HTML structure
 
-## Running unit tests
+## 🧪 Testing
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
+Run the unit tests:
 ```bash
 ng test
 ```
 
-## Running end-to-end tests
+## 📦 Build
 
-For end-to-end (e2e) testing, run:
-
+Build the project:
 ```bash
-ng e2e
+ng build
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+The build artifacts will be stored in the `dist/` directory.
 
-## Additional Resources
+## 🤝 Contributing
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 👥 Authors
+
+- Your Name - Initial work
+
+## 🙏 Acknowledgments
+
+- Angular Team
+- Tailwind CSS Team
+- All contributors
