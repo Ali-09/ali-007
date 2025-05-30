@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 export interface User {
   id: number;
@@ -22,7 +22,23 @@ export class AuthService {
     }
   }
 
-  login(email: string, password: string): Observable<User> {
+  register(name: string, email: string, _password: string): Observable<User> {
+    // TODO: Replace with actual API call
+    return new Observable<User>(observer => {
+      // Simulate API call
+      setTimeout(() => {
+        const user: User = {
+          id: Math.floor(Math.random() * 1000),
+          email: email,
+          name: name,
+        };
+        observer.next(user);
+        observer.complete();
+      }, 1000);
+    });
+  }
+
+  login(email: string, _password: string): Observable<User> {
     // TODO: Replace with actual API call
     return new Observable<User>(observer => {
       // Simulate API call
