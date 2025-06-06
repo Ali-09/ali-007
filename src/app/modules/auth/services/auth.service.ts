@@ -1,67 +1,97 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-
-export interface User {
-  id: number;
-  email: string;
-  name: string;
-}
+import { HttpClient } from '@angular/common/http';
+import { Injectable, computed, signal } from '@angular/core';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { AuthResponse, LoginRequest, RegisterRequest } from '../../../core/models/auth.model';
+import { User } from '../../../core/models/user.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private currentUserSubject = new BehaviorSubject<User | null>(null);
-  public currentUser$ = this.currentUserSubject.asObservable();
+  private readonly apiUrl = '/api';
 
-  constructor() {
-    // Check if user is stored in localStorage
+  private readonly currentUserSignal = signal<User | null>(null);
+  private readonly tokenSignal = signal<string | null>(null);
+
+  public readonly currentUser = computed(() => this.currentUserSignal());
+  public readonly token = computed(() => this.tokenSignal());
+
+  constructor(private http: HttpClient) {
+    this.initializeAuthState();
+  }
+
+  private initializeAuthState(): void {
     const storedUser = localStorage.getItem('currentUser');
-    if (storedUser) {
-      this.currentUserSubject.next(JSON.parse(storedUser));
+    const storedToken = localStorage.getItem('token');
+
+    if (storedUser && storedToken) {
+      this.currentUserSignal.set(JSON.parse(storedUser));
+      this.tokenSignal.set(storedToken);
     }
   }
 
-  register(name: string, email: string, _password: string): Observable<User> {
-    // TODO: Replace with actual API call
-    return new Observable<User>(observer => {
-      // Simulate API call
-      setTimeout(() => {
-        const user: User = {
-          id: Math.floor(Math.random() * 1000),
-          email: email,
-          name: name,
-        };
-        observer.next(user);
-        observer.complete();
-      }, 1000);
-    });
+  private setAuthState(user: User, token: string): void {
+    localStorage.setItem('currentUser', JSON.stringify(user));
+    localStorage.setItem('token', token);
+    this.currentUserSignal.set(user);
+    this.tokenSignal.set(token);
   }
 
-  login(email: string, _password: string): Observable<User> {
-    // TODO: Replace with actual API call
-    return new Observable<User>(observer => {
-      // Simulate API call
-      setTimeout(() => {
-        const user: User = {
-          id: 1,
-          email: email,
-          name: 'Test User',
-        };
-        this.currentUserSubject.next(user);
-        localStorage.setItem('currentUser', JSON.stringify(user));
-        observer.next(user);
-        observer.complete();
-      }, 1000);
-    });
+  private clearAuthState(): void {
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('token');
+    this.currentUserSignal.set(null);
+    this.tokenSignal.set(null);
+  }
+
+  get isAuthenticated(): boolean {
+    return !!this.currentUserSignal() && !!this.tokenSignal();
+  }
+
+  get hasValidToken(): boolean {
+    const token = this.tokenSignal();
+    if (!token) return false;
+
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      const expirationTime = payload.exp * 1000;
+      return Date.now() < expirationTime;
+    } catch {
+      return false;
+    }
+  }
+
+  register(user: RegisterRequest): Observable<User> {
+    return this.http.post<AuthResponse>(`${this.apiUrl}/register/`, user).pipe(
+      map(response => {
+        this.setAuthState(response.user, response.access_token);
+        return response.user;
+      }),
+      catchError(error => {
+        return throwError(() => error);
+      }),
+    );
+  }
+
+  login(email: string, password: string): Observable<User> {
+    const loginData: LoginRequest = { email, password };
+    return this.http.post<AuthResponse>(`${this.apiUrl}/login/`, loginData).pipe(
+      map(response => {
+        this.setAuthState(response.user, response.access_token);
+        return response.user;
+      }),
+      catchError(error => {
+        return throwError(() => error);
+      }),
+    );
   }
 
   logout(): void {
-    localStorage.removeItem('currentUser');
-    this.currentUserSubject.next(null);
+    this.clearAuthState();
   }
 
-  isAuthenticated(): boolean {
-    return !!this.currentUserSubject.value;
+  getToken(): string | null {
+    return localStorage.getItem('token');
   }
 }

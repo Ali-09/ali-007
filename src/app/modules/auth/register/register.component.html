@@ -114,7 +114,7 @@
               "
               class="mt-1 text-red-400 text-sm"
             >
-              La contraseña debe tener al menos 6 caracteres
+              La contraseña debe tener al menos 8 caracteres
             </div>
           </div>
 
@@ -150,6 +150,10 @@
               Las contraseñas no coinciden
             </div>
           </div>
+        </div>
+
+        <div *ngIf="errorMessage" class="text-red-400 text-sm text-center">
+          {{ errorMessage }}
         </div>
 
         <button

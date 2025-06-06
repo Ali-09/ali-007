@@ -1,1 +1,18 @@
-<p>navbar works!</p>
+<nav class="bg-white shadow-lg">
+  <div class="container mx-auto px-4">
+    <div class="flex justify-between items-center h-16">
+      <div class="flex items-center">
+        <a routerLink="/" class="text-xl font-bold text-gray-800">Ali-007</a>
+      </div>
+      <div class="flex items-center space-x-4">
+        <a routerLink="/" class="text-gray-600 hover:text-gray-900">Home</a>
+        <button
+          (click)="logout()"
+          class="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+        >
+          Cerrar Sesión
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
