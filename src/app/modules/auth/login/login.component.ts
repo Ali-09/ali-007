@@ -13,6 +13,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class LoginComponent {
   loginForm: FormGroup;
+  errorMessage: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -21,19 +22,21 @@ export class LoginComponent {
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
 
   onSubmit(): void {
     if (this.loginForm.valid) {
+      this.errorMessage = '';
       const { email, password } = this.loginForm.value;
+
       this.authService.login(email, password).subscribe({
         next: () => {
-          this.router.navigate(['/']);
+          this.router.navigateByUrl('/');
         },
-        error: error => {
-          console.error('Login failed:', error);
+        error: _ => {
+          this.errorMessage = 'Credenciales inválidas. Por favor, verifica tu correo y contraseña.';
         },
       });
     }

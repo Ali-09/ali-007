@@ -13,6 +13,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class RegisterComponent {
   registerForm: FormGroup;
+  errorMessage: string = '';
 
   constructor(
     private fb: FormBuilder,
@@ -23,7 +24,7 @@ export class RegisterComponent {
       {
         name: ['', [Validators.required, Validators.minLength(3)]],
         email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required, Validators.minLength(6)]],
+        password: ['', [Validators.required, Validators.minLength(8)]],
         confirmPassword: ['', [Validators.required]],
       },
       {
@@ -45,13 +46,15 @@ export class RegisterComponent {
 
   onSubmit(): void {
     if (this.registerForm.valid) {
+      this.errorMessage = '';
       const { name, email, password } = this.registerForm.value;
-      this.authService.register(name, email, password).subscribe({
+
+      this.authService.register({ name, email, password, salary: 0.0, currency_id: 1 }).subscribe({
         next: () => {
-          this.router.navigate(['/login']);
+          this.router.navigateByUrl('/');
         },
-        error: (error: Error) => {
-          console.error('Registration failed:', error);
+        error: _ => {
+          this.errorMessage = 'Error al registrar. Por favor, intenta de nuevo.';
         },
       });
     }
