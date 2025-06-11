@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { ButtonExamplesComponent } from './components/button-examples/button-examples.component';
 import { ToastExamplesComponent } from './components/toast-examples/toast-examples.component';
 
 @Component({
   selector: 'app-elements',
   standalone: true,
-  imports: [CommonModule, ToastExamplesComponent],
-  templateUrl: './elements.component.html',
+  imports: [CommonModule, RouterModule, ButtonExamplesComponent, ToastExamplesComponent],
+  templateUrl: './elements.component.html'
 })
-export class ElementsComponent {
-  constructor() {}
-}
+export class ElementsComponent {}

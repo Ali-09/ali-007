@@ -1,6 +1,26 @@
-<div class="min-h-screen bg-gray-100">
-  <app-navbar></app-navbar>
-  <main class="container mx-auto px-4 py-8">
+<div class="min-h-screen flex flex-col bg-gradient-to-b from-blue-800 to-blue-950">
+  <nav class="backdrop-blur-xl bg-emerald-600/40 border-b border-emerald-700 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center">
+          <a routerLink="/" class="flex items-center cursor-pointer group">
+            <div class="relative h-8 w-8 overflow-hidden rounded-lg">
+              <img src="assets/imgs/cost.png" alt="Logo" class="h-full w-full object-cover [filter:invert(48%)_sepia(79%)_saturate(2476%)_hue-rotate(140deg)_brightness(118%)_contrast(119%)] group-hover:[filter:none]">
+            </div>
+          </a>
+        </div>
+        <div class="flex items-center space-x-4">
+          <a routerLink="/home" class="text-blue-100 hover:text-emerald-300 transition-colors duration-200 cursor-pointer">Home</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <router-outlet></router-outlet>
   </main>
+
+  <footer class="py-3">
+    <p class="text-center text-blue-100/80 text-sm">Made with ❤️ by Jesus Ali</p>
+  </footer>
 </div>
