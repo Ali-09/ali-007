@@ -1,17 +1,23 @@
-<nav class="bg-white shadow-lg">
-  <div class="container mx-auto px-4">
-    <div class="flex justify-between items-center h-16">
+<nav class="backdrop-blur-xl bg-emerald-600/40 border-b border-emerald-700 shadow-lg">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
       <div class="flex items-center">
-        <a routerLink="/" class="text-xl font-bold text-gray-800">Ali-007</a>
+        <a routerLink="/" class="flex items-center cursor-pointer group">
+          <div class="relative h-8 w-8 overflow-hidden rounded-lg">
+            <img
+              src="assets/imgs/cost.png"
+              alt="Logo"
+              class="h-full w-full object-cover [filter:invert(48%)_sepia(79%)_saturate(2476%)_hue-rotate(140deg)_brightness(118%)_contrast(119%)] group-hover:[filter:none]"
+            />
+          </div>
+        </a>
       </div>
       <div class="flex items-center space-x-4">
-        <a routerLink="/" class="text-gray-600 hover:text-gray-900">Home</a>
-        <button
-          (click)="logout()"
-          class="px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+        <a
+          routerLink="/home"
+          class="text-blue-100 hover:text-emerald-300 transition-colors duration-200 cursor-pointer"
+          >Home</a
         >
-          Cerrar Sesión
-        </button>
       </div>
     </div>
   </div>

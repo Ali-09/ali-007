@@ -5,7 +5,7 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { authInterceptor } from './core/interceptors/auth.interceptor';
-import { ToastService } from './modules/auth/services/toast.service';
+import { ToastService } from './core/services/toast.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [

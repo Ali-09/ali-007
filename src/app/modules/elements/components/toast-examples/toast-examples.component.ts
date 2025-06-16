@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ToastPosition } from '../../../../core/models/toast.model';
-import { ToastService } from '../../../auth/services/toast.service';
+import { ToastPosition } from '@core/models/toast.model';
+import { ToastService } from '@core/services/toast.service';
 
 @Component({
   selector: 'app-toast-examples',

@@ -2,7 +2,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { Toast, ToastPosition } from '@core/models/toast.model';
-import { ToastService } from '@modules/auth/services/toast.service';
+import { ToastService } from '@core/services/toast.service';
 
 @Component({
   selector: 'app-toast',
