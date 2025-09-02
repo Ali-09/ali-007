@@ -11,25 +11,34 @@ export const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+    data: { animation: 'LoginPage' }
   },
   {
     path: 'register',
     component: RegisterComponent,
+    data: { animation: 'RegisterPage' }
   },
   {
     path: 'elements',
     component: ElementsComponent,
-    canActivate: [RouteDevelopmentGuard]
+    canActivate: [RouteDevelopmentGuard],
+    data: { animation: 'ElementsPage' }
   },
   {
     path: '',
     component: MainLayoutComponent,
     canActivate: [AuthGuard],
+    data: { animation: 'MainLayout' },
     children: [
       {
         path: '',
         component: HomeComponent,
+        data: { animation: 'HomePage' }
       },
     ],
   },
+  {
+    path: '**',
+    redirectTo: ''
+  }
 ];

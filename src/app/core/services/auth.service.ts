@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, computed, signal } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthResponse, LoginRequest, RegisterRequest } from '@core/models/auth.model';
 import { User } from '@core/models/user.model';
 import { Observable, throwError } from 'rxjs';
@@ -17,7 +18,7 @@ export class AuthService {
   public readonly currentUser = computed(() => this.currentUserSignal());
   public readonly token = computed(() => this.tokenSignal());
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.initializeAuthState();
   }
 
@@ -38,11 +39,12 @@ export class AuthService {
     this.tokenSignal.set(token);
   }
 
-  private clearAuthState(): void {
+  clearAuthState(): void {
     localStorage.removeItem('currentUser');
     localStorage.removeItem('token');
     this.currentUserSignal.set(null);
     this.tokenSignal.set(null);
+    this.router.navigate(['login']);
   }
 
   get isAuthenticated(): boolean {
@@ -88,7 +90,9 @@ export class AuthService {
   }
 
   logout(): void {
-    this.clearAuthState();
+    this.http.post(`${this.apiUrl}/logout/`, {}).subscribe(() => {
+      this.clearAuthState();
+    })
   }
 
   getToken(): string | null {

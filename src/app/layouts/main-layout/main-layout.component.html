@@ -1,11 +1,32 @@
-<div class="min-h-screen flex flex-col bg-gradient-to-b from-blue-800 to-blue-950">
-  <app-navbar></app-navbar>
+<div class="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black relative overflow-hidden">
+  <!-- Background Bubbles -->
+  <div class="fixed inset-0 opacity-20 pointer-events-none">
+    @for (bubble of bubbles; track bubble) {
+      <div
+        class="bubble bg-green-500"
+        [ngClass]="[bubble.size, bubble.opacity]"
+        [style.left.%]="bubble.x"
+        [style.top.%]="bubble.y"
+        [style.animation-duration]="bubble.duration + 's'"
+        [style.animation-delay]="bubble.delay + 's'"
+      ></div>
+    }
+  </div>
+  
+  <div class="pb-8">
+    <!-- Navbar -->
+    <app-navbar class="w-full"></app-navbar>
 
-  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <router-outlet></router-outlet>
-  </main>
+    <!-- Main Content -->
+    <main class="min-h-screen flex items-center justify-center relative pt-32">
+      <div class="w-full">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
 
-  <footer class="py-3">
-    <p class="text-center text-blue-100/80 text-sm">Made with ❤️ by Jesus Ali</p>
-  </footer>
+    <!-- Footer -->
+    <footer class="py-3 w-full">
+      <p class="text-center text-green-300/80 text-sm">Made with ❤️ by Jesus Ali</p>
+    </footer>
+  </div>
 </div>
