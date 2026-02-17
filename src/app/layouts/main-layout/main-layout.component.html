@@ -1,6 +1,18 @@
-<div class="min-h-screen bg-gray-100">
-  <app-navbar></app-navbar>
-  <main class="container mx-auto px-4 py-8">
-    <router-outlet></router-outlet>
-  </main>
+<div class="min-h-screen bg-gradient-to-br from-cyan-900 via-cyan-800 to-cyan-500 relative overflow-hidden">
+  <div class="min-h-screen flex flex-col">
+    <!-- Navbar -->
+    <app-navbar class="w-full"></app-navbar>
+
+    <!-- Main Content -->
+    <main class="flex-1 relative pt-24 pb-12">
+      <div class="container mx-auto max-w-7xl px-4">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-3 w-full">
+      <p class="text-center text-green-300/80 text-sm">Made with ❤️ by Jesus Ali</p>
+    </footer>
+  </div>
 </div>

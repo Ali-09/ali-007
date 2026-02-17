@@ -1,4 +1,9 @@
 @import 'tailwindcss';
+@import './assets/styles/buttons.css';
+
+html, body, app-root {
+  background: linear-gradient(to right, #000000, #111827) !important;
+}
 
 @keyframes gradient {
   0% {
@@ -13,8 +18,8 @@
 }
 
 .animate-gradient {
-  background-size: 200% 200%;
   animation: gradient 15s ease infinite;
+  background-size: 200% 200%;
 }
 
 body {

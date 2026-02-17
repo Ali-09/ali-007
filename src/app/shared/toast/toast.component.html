@@ -1,0 +1,31 @@
+<div class="fixed inset-0 pointer-events-none z-50">
+  @for (position of positions; track position) {
+    <div 
+      class="fixed flex flex-col gap-4"
+      [ngClass]="getPositionClasses(position)"
+    >
+      @for (toast of getToastsByPosition(position); track toast) {
+        <div
+          [@toastAnimation]
+          class="w-[360px] p-4 rounded-xl flex items-center justify-between backdrop-blur-lg border border-white/10 shadow-xl bg-black/30 bg-gradient-to-r pointer-events-auto transform-gpu"
+          [ngClass]="getToastClasses(toast)"
+        >
+          <div class="flex items-center gap-3 flex-1">
+            <span
+              class="text-xl backdrop-blur-md bg-white/20 p-2 rounded-full flex items-center justify-center min-w-[32px] h-8 leading-none"
+            >
+              {{ getIcon(toast.type) }}
+            </span>
+            <span class="text-sm leading-relaxed font-medium flex-1">{{ toast.message }}</span>
+            <button
+              class="w-8 h-8 text-xl rounded-full hover:bg-white/20 transition-all duration-200 flex justify-center"
+              (click)="onClose(toast)"
+            >
+              ×
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>
