@@ -1,0 +1,37 @@
+<div class="min-h-screen p-6">
+  <div class="max-w-4xl mx-auto">
+    <div class="bg-gradient-to-br from-gray-800/50 to-green-800/50 rounded-2xl p-8 backdrop-blur-md border border-green-500/20 shadow-2xl shadow-black/40">
+      <div class="flex items-center gap-4 mb-6">
+        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-green-500 to-green-700 flex items-center justify-center shadow-lg">
+          <span class="text-white text-xl font-bold">{{ auth.currentUser()?.name?.[0] || 'U' }}</span>
+        </div>
+        <div>
+          <h1 class="text-3xl font-bold text-white">Perfil</h1>
+          <p class="text-green-400">Información de tu cuenta</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="rounded-xl p-6 bg-black/40 border border-white/10">
+          <h2 class="text-xl font-semibold text-white mb-4">Datos personales</h2>
+          <div class="space-y-3 text-green-300">
+            <p><span class="text-white/80">Nombre:</span> {{ auth.currentUser()?.name }}</p>
+            <p><span class="text-white/80">Correo:</span> {{ auth.currentUser()?.email }}</p>
+          </div>
+        </div>
+
+        <div class="rounded-xl p-6 bg-black/40 border border-white/10">
+          <h2 class="text-xl font-semibold text-white mb-4">Finanzas</h2>
+          <div class="space-y-3 text-green-300">
+            <p><span class="text-white/80">Salario:</span> {{ auth.currentUser()?.salary | currency:'USD':'symbol':'1.0-0' }}</p>
+            <p><span class="text-white/80">Frecuencia:</span> {{ auth.currentUser()?.income_frequency || 'Mensual' }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-8 text-center">
+        <a routerLink="/" class="btn btn-secondary">Volver al inicio</a>
+      </div>
+    </div>
+  </div>
+</div>

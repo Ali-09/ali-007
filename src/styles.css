@@ -1,77 +1,8 @@
 @import 'tailwindcss';
 @import './assets/styles/buttons.css';
 
-/* Animations */
-@keyframes pulse {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.6;
-  }
-  50% {
-    transform: scale(1.1);
-    opacity: 1;
-  }
-}
-
-/* Optimized View Transitions */
-@keyframes fadeIn {
-  from { 
-    opacity: 0;
-  }
-  to { 
-    opacity: 1;
-  }
-}
-
-@keyframes fadeOut {
-  to { 
-    opacity: 0;
-  }
-}
-
-/* Smooth page transitions */
-.page-transition-active {
-  view-transition-name: page;
-}
-
-/* Disable transitions for users who prefer reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  ::view-transition-group(*),
-  ::view-transition-old(*),
-  ::view-transition-new(*) {
-    animation: none !important;
-  }
-}
-
-/* Optimize view transitions */
-::view-transition-old(root) {
-  animation: 90ms fadeOut;
-  background: linear-gradient(to right, #000000, #111827) !important;
-}
-
-::view-transition-new(root) {
-  animation: 90ms fadeIn;
-  background: linear-gradient(to right, #000000, #111827) !important;
-}
-
-/* Ensure no white background during transitions */
-::view-transition-group(root) {
-  background: linear-gradient(to right, #000000, #111827) !important;
-}
-
-* {
-  background-color: transparent;
-}
-
 html, body, app-root {
   background: linear-gradient(to right, #000000, #111827) !important;
-}
-
-/* Ensure smooth content loading */
-router-outlet + * {
-  display: block;
-  animation: 100ms ease-out fadeIn;
-  animation-fill-mode: both;
 }
 
 @keyframes gradient {

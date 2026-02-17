@@ -1,6 +1,110 @@
-<div class="text-center">
-  <h1 class="text-4xl font-bold text-slate-300 mb-4">Welcome to Ali-007</h1>
-  <p class="text-lg text-gray-500">
-    This is a modern Angular application built with standalone components and Tailwind CSS.
-  </p>
+<div class="space-y-6">
+  <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+    <div>
+      <p class="text-sm text-blue-200/80">Panel de administración</p>
+      <h1 class="text-3xl md:text-4xl font-bold text-white">
+        Hola, {{ auth.currentUser()?.name || 'Administrador' }}
+      </h1>
+      <p class="text-sm text-blue-100/80 mt-1">
+        Resumen general de tu sistema de pagos y usuarios.
+      </p>
+    </div>
+    <div class="flex flex-wrap gap-2">
+      <a routerLink="/elements" class="btn btn-primary flex items-center gap-2">
+        <span>⚙️</span>
+        <span>Ver componentes</span>
+      </a>
+      <a routerLink="/profile" class="btn btn-secondary flex items-center gap-2">
+        <span>👤</span>
+        <span>Ver perfil</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div class="bg-black/30 border border-white/10 rounded-xl p-4 backdrop-blur-md shadow-lg">
+      <p class="text-xs text-blue-100/70 uppercase tracking-wide">Pagos hoy</p>
+      <p class="text-3xl font-bold text-white mt-2">$ 12,450</p>
+      <p class="text-xs text-emerald-300 mt-1">+18% vs ayer</p>
+    </div>
+    <div class="bg-black/30 border border-white/10 rounded-xl p-4 backdrop-blur-md shadow-lg">
+      <p class="text-xs text-blue-100/70 uppercase tracking-wide">Pagos pendientes</p>
+      <p class="text-3xl font-bold text-white mt-2">27</p>
+      <p class="text-xs text-yellow-300 mt-1">Revisar antes del cierre</p>
+    </div>
+    <div class="bg-black/30 border border-white/10 rounded-xl p-4 backdrop-blur-md shadow-lg">
+      <p class="text-xs text-blue-100/70 uppercase tracking-wide">Usuarios activos</p>
+      <p class="text-3xl font-bold text-white mt-2">134</p>
+      <p class="text-xs text-emerald-300 mt-1">Últimas 24 horas</p>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+    <div class="lg:col-span-2 bg-black/30 border border-white/10 rounded-xl p-4 backdrop-blur-md shadow-lg">
+      <div class="flex items-center justify-between mb-3">
+        <h2 class="text-lg font-semibold text-white">Últimos pagos</h2>
+        <button class="text-xs text-blue-200 hover:text-white transition-colors">Ver todos</button>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm text-blue-50/90">
+          <thead>
+            <tr class="text-xs text-blue-100/70 border-b border-white/10">
+              <th class="py-2 text-left font-medium">Cliente</th>
+              <th class="py-2 text-left font-medium">Concepto</th>
+              <th class="py-2 text-left font-medium">Monto</th>
+              <th class="py-2 text-left font-medium">Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-white/5">
+              <td class="py-2">Juan Pérez</td>
+              <td class="py-2">Pago de nómina</td>
+              <td class="py-2">$ 3,200</td>
+              <td class="py-2">
+                <span class="px-2 py-0.5 rounded-full text-xs bg-emerald-500/30 text-emerald-200 border border-emerald-400/30">
+                  Completado
+                </span>
+              </td>
+            </tr>
+            <tr class="border-b border-white/5">
+              <td class="py-2">María López</td>
+              <td class="py-2">Reembolso</td>
+              <td class="py-2">$ 480</td>
+              <td class="py-2">
+                <span class="px-2 py-0.5 rounded-full text-xs bg-yellow-500/30 text-yellow-200 border border-yellow-400/30">
+                  Pendiente
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td class="py-2">Empresa XYZ</td>
+              <td class="py-2">Servicio mensual</td>
+              <td class="py-2">$ 8,770</td>
+              <td class="py-2">
+                <span class="px-2 py-0.5 rounded-full text-xs bg-emerald-500/30 text-emerald-200 border border-emerald-400/30">
+                  Completado
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="bg-black/30 border border-white/10 rounded-xl p-4 backdrop-blur-md shadow-lg space-y-3">
+      <h2 class="text-lg font-semibold text-white mb-1">Accesos rápidos</h2>
+      <button class="w-full btn btn-primary flex items-center justify-center gap-2">
+        <span>➕</span>
+        <span>Registrar pago</span>
+      </button>
+      <button class="w-full btn btn-secondary flex items-center justify-center gap-2">
+        <span>👥</span>
+        <span>Gestionar usuarios</span>
+      </button>
+      <button class="w-full btn btn-error flex items-center justify-center gap-2">
+        <span>⚠️</span>
+        <span>Ver incidencias</span>
+      </button>
+    </div>
+  </div>
 </div>

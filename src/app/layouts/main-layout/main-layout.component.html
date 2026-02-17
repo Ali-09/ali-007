@@ -1,25 +1,11 @@
-<div class="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black relative overflow-hidden">
-  <!-- Background Bubbles -->
-  <div class="fixed inset-0 opacity-20 pointer-events-none">
-    @for (bubble of bubbles; track bubble) {
-      <div
-        class="bubble bg-green-500"
-        [ngClass]="[bubble.size, bubble.opacity]"
-        [style.left.%]="bubble.x"
-        [style.top.%]="bubble.y"
-        [style.animation-duration]="bubble.duration + 's'"
-        [style.animation-delay]="bubble.delay + 's'"
-      ></div>
-    }
-  </div>
-  
-  <div class="pb-8">
+<div class="min-h-screen bg-gradient-to-br from-cyan-900 via-cyan-800 to-cyan-500 relative overflow-hidden">
+  <div class="min-h-screen flex flex-col">
     <!-- Navbar -->
     <app-navbar class="w-full"></app-navbar>
 
     <!-- Main Content -->
-    <main class="min-h-screen flex items-center justify-center relative pt-32">
-      <div class="w-full">
+    <main class="flex-1 relative pt-24 pb-12">
+      <div class="container mx-auto max-w-7xl px-4">
         <router-outlet></router-outlet>
       </div>
     </main>

@@ -17,15 +17,15 @@ export class NavItemComponent {
   getTextColor(): string {
     switch (this.itemKey) {
       case 'inicio':
-        return this.active ? 'text-green-500' : 'hover:text-green-500'
-      case 'perfil':
         return this.active ? 'text-green-400' : 'hover:text-green-400'
+      case 'perfil':
+        return this.active ? 'text-blue-400' : 'hover:text-blue-400'
       case 'configuracion':
-        return this.active ? 'text-green-600' : 'hover:text-green-600'
+        return this.active ? 'text-purple-400' : 'hover:text-purple-400'
       case 'salir':
-        return this.active ? 'text-gray-300' : 'hover:text-gray-300'
+        return this.active ? 'text-red-400' : 'hover:text-red-400'
       default:
-        return 'text-green-200'
+        return 'text-blue-200'
     }
   }
 }

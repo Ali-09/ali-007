@@ -10,8 +10,8 @@ export class RouteDevelopmentGuard implements CanActivate {
   constructor(private router: Router) {}
 
   canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
+    _route: ActivatedRouteSnapshot,
+    _state: RouterStateSnapshot
   ): boolean {
     // In development mode, always allow access
     if (!environment.production) {

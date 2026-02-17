@@ -6,6 +6,7 @@ import { LoginComponent } from '@modules/auth/login/login.component';
 import { RegisterComponent } from '@modules/auth/register/register.component';
 import { ElementsComponent } from '@modules/elements/elements.component';
 import { HomeComponent } from '@modules/home/home.component';
+import { ProfileComponent } from '@modules/profile/profile.component';
 
 export const routes: Routes = [
   {
@@ -34,6 +35,11 @@ export const routes: Routes = [
         path: '',
         component: HomeComponent,
         data: { animation: 'HomePage' }
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+        data: { animation: 'ProfilePage' }
       },
     ],
   },

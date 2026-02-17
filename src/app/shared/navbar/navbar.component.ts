@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { AuthService } from '@core/services/auth.service';
 import { NavItemComponent } from '../navitem/nav-item.component';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -11,11 +12,36 @@ import { NavItemComponent } from '../navitem/nav-item.component';
 })
 export class NavbarComponent {
   hoveredItem: string | null = null
+  currentUrl: string = ''
 
-  constructor(private _authService: AuthService) {}
+  constructor(private _authService: AuthService, private _router: Router) {
+    this.currentUrl = this._router.url
+    this._router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.currentUrl = event.urlAfterRedirects
+      }
+    })
+  }
 
   onLogout() {
     this._authService.logout();
+  }
+
+  navigate(url: string) {
+    this._router.navigateByUrl(url)
+  }
+
+  isActive(itemKey: string): boolean {
+    switch (itemKey) {
+      case 'inicio':
+        return this.currentUrl === '/' || this.currentUrl === ''
+      case 'perfil':
+        return this.currentUrl.startsWith('/profile')
+      case 'configuracion':
+        return this.currentUrl.startsWith('/configuracion') || this.currentUrl.startsWith('/settings')
+      default:
+        return false
+    }
   }
 
   getBorderColor(): string {

@@ -1,14 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { AuthService } from '@core/services/auth.service';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, RouterModule],
-  templateUrl: './home.component.html',
+  imports: [CommonModule, RouterLink],
+  templateUrl: './profile.component.html',
+  styles: []
 })
-export class HomeComponent {
+export class ProfileComponent {
   constructor(public auth: AuthService) {}
 }
