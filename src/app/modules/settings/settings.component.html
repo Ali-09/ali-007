@@ -1,0 +1,110 @@
+<div class="space-y-6">
+  <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+    <div>
+      <p class="text-sm text-blue-200/80">Configuración</p>
+      <h1 class="text-3xl md:text-4xl font-bold text-white">
+        Preferencias de usuario
+      </h1>
+      <p class="text-sm text-blue-100/80 mt-1">
+        Actualiza tus datos personales y parámetros financieros.
+      </p>
+    </div>
+  </div>
+
+  <form
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+    class="grid grid-cols-1 lg:grid-cols-3 gap-4"
+  >
+    <!-- Columna izquierda: datos personales + seguridad -->
+    <div class="lg:col-span-2 space-y-4">
+      <div class="bg-black/30 border border-white/10 rounded-xl p-5 backdrop-blur-md shadow-lg space-y-4">
+        <h2 class="text-lg font-semibold text-white">Datos personales</h2>
+
+        <div class="space-y-3">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <app-input
+              formControlName="first_name"
+              label="Nombres"
+              placeholder="Ingresa tus nombres"
+              prefixIcon="👤"
+            ></app-input>
+
+            <app-input
+              formControlName="last_name"
+              label="Apellidos"
+              placeholder="Ingresa tus apellidos"
+              prefixIcon="👤"
+            ></app-input>
+          </div>
+
+          <app-input
+            formControlName="email"
+            label="Correo electrónico"
+            type="email"
+            placeholder="Ingresa tu correo electrónico"
+            prefixIcon="📧"
+            variant="secondary"
+          ></app-input>
+        </div>
+      </div>
+
+      <div class="bg-black/30 border border-white/10 rounded-xl p-5 backdrop-blur-md shadow-lg space-y-2">
+        <h2 class="text-lg font-semibold text-white">Seguridad</h2>
+        <p class="text-sm text-blue-100/80">
+          La configuración de contraseña se integrará con la API de GTO Pagos.
+        </p>
+      </div>
+    </div>
+
+    <!-- Columna derecha: parámetros financieros + guardar -->
+    <div class="space-y-4">
+      <div class="relative z-10 bg-black/30 border border-white/10 rounded-xl p-5 backdrop-blur-md shadow-lg space-y-4">
+        <h2 class="text-lg font-semibold text-white">Parámetros financieros</h2>
+
+        <div class="space-y-3">
+          <app-input
+            formControlName="salary"
+            label="Salario estimado"
+            type="number"
+            placeholder="0.00"
+            prefixIcon="💰"
+          ></app-input>
+
+          <app-select
+            formControlName="currency_id"
+            [options]="[
+              { label: 'MXN - Peso mexicano', value: 1 },
+              { label: 'USD - Dólar estadounidense', value: 2 },
+              { label: 'EUR - Euro', value: 3 }
+            ]"
+            label="Moneda"
+            placeholder="Selecciona una moneda"
+          ></app-select>
+
+          <app-select
+            formControlName="income_frequency"
+            [options]="[
+              { label: 'Mensual', value: 'Mensual' },
+              { label: 'Quincenal', value: 'Quincenal' },
+              { label: 'Semanal', value: 'Semanal' },
+              { label: 'Anual', value: 'Anual' }
+            ]"
+            label="Frecuencia de ingreso"
+            placeholder="Selecciona una frecuencia"
+          ></app-select>
+        </div>
+      </div>
+
+      <app-button
+        type="submit"
+        variant="primary"
+        [fullWidth]="true"
+        [disabled]="form.invalid || form.pristine"
+      >
+        <span>💾</span>
+        <span>Guardar cambios</span>
+      </app-button>
+    </div>
+  </form>
+</div>
