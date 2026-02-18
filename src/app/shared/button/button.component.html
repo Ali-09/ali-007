@@ -1,0 +1,11 @@
+<button
+  [attr.type]="type"
+  class="btn flex items-center justify-center gap-2"
+  [ngClass]="[variantClass, sizeClass, fullWidth ? 'w-full' : '']"
+  [disabled]="disabled || loading"
+  [attr.aria-busy]="loading"
+  (click)="onClick($event)"
+>
+  <ng-content></ng-content>
+</button>
+

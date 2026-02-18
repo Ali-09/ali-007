@@ -95,6 +95,21 @@ export class AuthService {
     })
   }
 
+  updateLocalUser(partial: Partial<User>): void {
+    const current = this.currentUserSignal();
+    if (!current) return;
+
+    const updated: User = { ...current, ...partial };
+    const token = this.tokenSignal();
+
+    if (token) {
+      this.setAuthState(updated, token);
+    } else {
+      this.currentUserSignal.set(updated);
+      localStorage.setItem('currentUser', JSON.stringify(updated));
+    }
+  }
+
   getToken(): string | null {
     return localStorage.getItem('token');
   }
